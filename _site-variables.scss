@@ -1,0 +1,299 @@
+////
+/// all site specific colours, fonts and images
+/// NOTE: please use camel case if creating a custom variable.
+/// Variables with dashes are from plugins (bootstrap, font-awesome...)
+/// @group Site-Specific Variables
+////
+
+/// copied and unchanged from bootstrap in order to set container variables.
+/// Wasn't working without being in this file.
+@mixin _assert-ascending($map, $map-name) {
+  $prev-key: null;
+  $prev-num: null;
+  @each $key, $num in $map {
+    @if $prev-num == null {
+      // Do nothing
+    } @else if not comparable($prev-num, $num) {
+      @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    } @else if $prev-num >= $num {
+      @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    }
+    $prev-key: $key;
+    $prev-num: $num;
+  }
+}
+
+
+$site				: "itravel";
+$siteUrl			: "http://www.itravel2000.com/";
+
+/// ======== Colours =========
+
+/// Primary Brand Colour - Orange
+/// - NOTE: We should limit the use of brand color variables in other
+/// SCSS files unless we are pretty sure a certain element will always use
+/// the primary colour (for example) because the colours will be different for every site.
+/// It's better to create a variable in this file that uses one of
+/// these colours so that it can be changed, when needed.
+/// - Variables with a dash (brand-primary) as opposed to camelCase are overriding Bootstrap variables.
+	$brand-primary					: #FF7900;
+
+/// Darker Blue
+	$brandColor2					: #29265E;
+
+/// Lighter blue (indicating "action" - used for buttons, secitons and links)
+	$brandColor3					: #2980B9;
+
+/// grey - main text colour
+	$brandColor4					: #333;
+
+/// Red -  indicates urgency - warnings, errors, urgent messages
+	$brandColor5					: #D51532;
+
+/// Lightest blue (buttons)
+	$brandColor6					: #35a6f0;
+
+/// Bootstrap Dark Grey
+	$gray-dark						: #373a3c;
+
+///bootstrap
+	$brand-success					: #5cb85c;
+	$brand-info						: #5bc0de;
+	$brand-warning					: #f0ad4e;
+	$brand-danger					: #d9534f;
+	$brand-inverse					: $gray-dark;
+
+/// === Global ====
+
+
+
+/// Created variable for max container width for each breakpoint to use in CSS
+	$smContainerMax         		: 540px;
+	$mdContainerMax         		: 720px;
+	$lgContainerMax         		: 960px;
+	$xlContainerMax         		: 1140px;
+
+	$container-max-widths: (
+	  sm: $smContainerMax,
+	  md: $mdContainerMax ,
+	  lg: $lgContainerMax,
+	  xl: $xlContainerMax
+	) !default;
+
+	$xsGridBreak					: 0;
+	$smGridBreak					: 576px;
+	$mdGridBreak					: 768px;
+	$lgGridBreak					: 992px;
+	$xlGridBreak					: 1200px;
+
+	$grid-breakpoints: (
+	  xs: $xsGridBreak,
+	  sm: $smGridBreak,
+	  md: $mdGridBreak,
+	  lg: $lgGridBreak,
+	  xl: $xlGridBreak
+	) !default;
+
+	@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+
+/// Global background colour
+	$body-bg						: #fff;
+
+
+/// Search
+	$searchBgColour					: rgba(0, 0, 0, 0.5);
+	$searchBgColourSm				: transparent;
+
+
+
+///links
+
+	$link-color						: $brandColor3;
+	$link-decoration				: none;
+	$link-hover-color				: darken($link-color, 15%);
+	$link-hover-decoration			: underline;
+
+	$body-color						: $brandColor4;
+	$headerColor					: #000;
+	$headerColorSm					: #333;
+	$starRatingColor				: #f89520;
+	$loaderColor					: #000;
+	$customBulletColor				: $brandColor2;
+
+///footer
+	$footerBgColour					: #6f6f6f;
+	$footerTextColour				: #fff;
+	$footerLinkColour				: #ccc;
+
+/// === Banners ====
+
+/// =====Bootstrap settings =====
+
+/// Enable or disable flex box on bootstrap grid
+	$enable-flex					: true;
+
+// ==== Rounded Corners
+	$border-radius					: .1rem;
+
+///Enable or disable rounded corners globally.
+	$enable-rounded					: false;
+
+///Enable or disable rounded corners on all buttons
+	$btnEnableRounded				: true;
+
+///Enable rounded corners on all form elements.
+/// - All Elements must use the bootstrap .form-control class for this to work.
+/// Example: &lt;input class="form-control"&gt;
+	$formEnableRounded: true;
+
+	$enable-shadows					: true;
+	$enable-gradients				: true;
+	$enable-transitions				: true;
+	$enable-hover-media-query		: true;
+	$enable-grid-classes			: true;
+	$enable-print-styles			: true;
+
+/// Price Colour 1
+	$priceColor1					: #000;
+	$priceColor1Sm					: #fff;
+
+/// Price Colour 2 - Second option for price colour
+	$priceColor2					: 	$brandColor2;
+
+/// Buttons
+
+	$btn-primary-color				: #fff;
+	$btn-primary-bg					: $brandColor5;
+	$btn-primary-border				: $btn-primary-bg;
+
+	$btn-secondary-color			: #fff;
+	$btn-secondary-bg				: $brand-primary;
+	$btn-secondary-border			: $brand-primary;
+
+/// Close Button
+		
+	$btn-close-weight				: 100;
+
+/// Low Importance button gradient
+	$btnLowImportanceGradientText	: #555;
+	$btnLowImportanceGradient1		: #fff;
+	$btnLowImportanceGradient2		: #ddd;
+	$btnLowImportanceGradientBorder	: #ddd;
+
+/// button primary gradient
+	$btnPrimaryGradientText			: #fff;
+	$btnPrimaryGradient1			: #35a6f0;
+	$btnPrimaryGradient2			: #2980b9;
+	$btnPrimaryGradientBorder		: transparent;
+
+/// button secondary gradient
+	$btnSecondaryGradient1			: #ff8b03;
+	$btnSecondaryGradient2			: #ff7900;
+
+/// ====== Type =======
+
+	/// Roboto Google Font import
+	@import url("https:///fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+
+	$font-family-sans-serif			: "Helvetica Neue", Helvetica, "Roboto", Arial, sans-serif;
+	$font-family-serif				: Georgia, "Times New Roman", Times, serif;
+	$font-family-monospace			: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	/// Set bootstrap font category
+	/// @example Options: $font-family-sans-serif. $font-family-serif, or $font-family-monospace
+	$font-family-base				: $font-family-sans-serif;
+	$font-size-base					: .875rem;
+
+	/// h1, h2, h3....
+	$font-size-h1					: 1.75rem;
+	$h1FontWeight					: 300;
+
+	$font-size-h2					: 2.625rem;
+	$font-size-h3					: 1.75rem;
+	$font-size-h4					: 1.5rem;
+	$font-size-h5					: 1.25rem;
+	$font-size-h6					: 1rem;
+
+/// Icons
+	$iconSize 						: $font-size-base;
+	$iconRatingColor				: #F89520;
+	$iconRatingColor2				: $brandColor2;
+	$iconEmptyStarColor 			: #d9d9d9;
+
+/// Forms
+	$input-bg 						: #fbfbfb;
+
+// Date Picker Input field
+	$react-dates-width-input								:    227px !default;
+	// $react-dates-width-input								:    100% !default;
+	$react-dates-width-arrow								:    24px !default;
+	$react-dates-width-tooltip-arrow						:    20px !default;
+	$react-dates-width-day-picker							:    300px !default;
+	$react-dates-spacing-vertical-picker					:    72px !default;
+	$react-dates-color-primary								:    #00a699 !default;
+	$react-dates-color-primary-dark							:    #00514a !default;
+	$react-dates-color-white								:    #fff !default;
+	$react-dates-color-gray									:    #565a5c !default;
+	// $react-dates-color-gray-dark							:    darken($react-daes-color-gray, 10.5%) !default;
+	// $react-dates-color-gray-light							:    lighten(	ct-dates-color-gray, 17.8%) !default;   // #82888a
+	$react-dates-color-gray-lighter							:    #d9d9d9 !default;
+
+	$react-dates-color-border								:	 #dbdbdb !default;
+	$react-dates-color-border-light							:    #dce0e0 !default;
+	$react-dates-color-border-medium						:    #c4c4c4 !default;
+	$react-dates-color-placeholder-text						:    #999999 !default;
+	$react-dates-color-text								 	:    #333333 !default;
+	$react-dates-color-text-focus							:    #007a87 !default;
+	$react-dates-color-focus								:    #ffffff !default;
+
+// Calendar	
+	$react-dates-color-primary								: 	 #555555 !default;
+	$react-dates-color-primary-shade-1						:    #888888 !default;
+	$react-dates-color-primary-shade-2						: 	 #999999 !default;
+	$react-dates-color-primary-shade-3						:    #dddddd !default;
+	$react-dates-color-primary-shade-4						:    #e8e7e7 !default;
+	$react-dates-color-secondary							:    #6b6b6b !default;
+
+// Popover
+	$popover-inner-padding               					:    1px !default;
+	$popover-bg                          					:    #fff !default;
+	$popover-max-width                   					:    276px !default;
+					
+	$popover-title-bg                    					:    $popover-bg !default;
+	$popover-title-padding-x             					:    14px !default;
+	$popover-title-padding-y             					:    8px !default;
+					
+	$popover-content-padding-x           					:    14px !default;
+	$popover-content-padding-y           					:    9px !default;
+					
+	$popover-arrow-width                 					:    10px !default;
+	$popover-arrow-color                 					:    $popover-bg !default;
+
+
+/// Icons
+	$searchIconColour				: $brand-primary;
+
+/// Breadcrumb
+	$breadcrumb-divider 			: ""; //text character divider. example: "/"
+	$breadcrumbDividerSvg 			: "https://s3.amazonaws.com/itravel2000/img/icons/icon-chevron-right.svg";
+	$breadcrumbDividerOpacity		: .4;
+	$breadcrumb-item-padding		: 1.3rem;
+	$breadcrumb-bg					: #transparent;
+	$breadcrumbLinkColor			: #5e5e5e;
+	$breadcrumb-active-color		: #aaa;
+	$breadcrumb-padding-x			: 0;
+
+/// Lists
+	$listDivider					: "•"; //text character divider. example: "/"
+
+/// ====== Site Specific Images =======
+
+/// site image folder path
+///@todo Update to new structure
+	$siteImg						: #{"/assets/"}#{$site}#{"/img/"};
+
+
+
+
+
+
